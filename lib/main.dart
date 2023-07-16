@@ -1,8 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rick_and_morty_app/presentation/layout/home_layout.dart';
 import 'package:rick_and_morty_app/translations/codegen_loader.g.dart';
+
+import 'config/app_router/app_router.dart';
+import 'features/layout/presentation/home_layout.dart';
+
 void main() async
 {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,12 +38,13 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (BuildContext context, Widget? _)
       {
-        return MaterialApp(
+        return MaterialApp.router(
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
           debugShowCheckedModeBanner: false,
-          home: HomeLayout(),
+          routerConfig: AppRouter.router,
+
         );
       },
     );
