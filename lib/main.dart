@@ -2,11 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rick_and_morty_app/translations/codegen_loader.g.dart';
-
 import 'config/app_router/app_router.dart';
-import 'features/layout/presentation/home_layout.dart';
 
-void main() async
+Future<void>main() async
 {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
@@ -44,7 +42,6 @@ class MyApp extends StatelessWidget {
           locale: context.locale,
           debugShowCheckedModeBanner: false,
           routerConfig: AppRouter.router,
-
         );
       },
     );
