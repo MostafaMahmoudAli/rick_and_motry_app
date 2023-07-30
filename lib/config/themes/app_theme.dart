@@ -1,0 +1,30 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rick_and_morty_app/core/utils/app_colors.dart';
+
+ThemeData themeData()
+{
+  return ThemeData(
+    appBarTheme:const AppBarTheme(
+      backgroundColor:AppColors.yellow,
+    ),
+    textTheme:TextTheme(
+      displayLarge:TextStyle(
+        color:AppColors.grey,
+        fontSize:30.sp,
+        fontWeight:FontWeight.bold,
+      ),
+      displayMedium:TextStyle(
+        color:AppColors.white,
+        fontSize:20.sp,
+        fontWeight:FontWeight.w700,
+      ),
+      displaySmall:TextStyle(
+        color:AppColors.grey,
+        fontSize:15.sp,
+        fontWeight:FontWeight.w500,
+      ),
+    ),
+    scaffoldBackgroundColor: AppColors.grey,
+  );
+}

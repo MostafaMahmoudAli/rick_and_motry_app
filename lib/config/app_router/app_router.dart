@@ -1,6 +1,6 @@
 import 'package:go_router/go_router.dart';
 
-import '../../features/layout/presentation/home_layout.dart';
+import '../../features/layout/presentation/all_characters_screen.dart';
 
 
 abstract class AppRouter
@@ -9,7 +9,7 @@ abstract class AppRouter
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => const HomeLayout(),
+        builder: (context, state) => const AllCharactersScreen(),
       ),
     ],
   );
