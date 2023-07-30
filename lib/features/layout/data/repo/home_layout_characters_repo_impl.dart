@@ -7,25 +7,26 @@ import 'package:rick_and_morty_app/core/utils/api_service.dart';
 import 'package:rick_and_morty_app/features/layout/data/model/character_model.dart';
 
 import '../../../../core/utils/end_points.dart';
-import 'home_layout_repo.dart';
+import 'home_layout_characters_repo.dart';
 
-class HomeLayoutRepoImpl implements HomeLayoutRepo{
+class HomeLayoutCharactersRepoImpl implements HomeLayoutCharactersRepo{
   ApiService apiService;
-  HomeLayoutRepoImpl(this.apiService);
+  HomeLayoutCharactersRepoImpl(this.apiService);
   @override
-  Future<Either<Failure,List<CharacterModel>>> getAllCharacters() async
+  Future<Either<Failure,List<Characters>>>getAllCharacters() async
   {
     try
     {
       var data = await apiService.get(endPoint: EndPoints.allCharacters);
 
-      List<CharacterModel>characterModel =[];
+      List<Characters>allCharacters =[];
 
-      characterModel.add(CharacterModel.fromJson(data));
+      allCharacters.add(Characters.fromJson(data));
 
-      return right(characterModel);
+      return right(allCharacters);
 
-    }catch(e)
+    }
+    catch(e)
     {
       if(e is DioException)
       {

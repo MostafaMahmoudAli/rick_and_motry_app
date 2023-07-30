@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rick_and_morty_app/translations/codegen_loader.g.dart';
 import 'config/app_router/app_router.dart';
+import 'config/themes/app_theme.dart';
 
 Future<void>main() async
 {
@@ -17,7 +18,7 @@ Future<void>main() async
         ],
         path: 'assets/translations',
         fallbackLocale: const Locale('en'),
-        assetLoader: CodegenLoader(),
+        assetLoader: const CodegenLoader(),
         child: const MyApp(),
     ),
   );
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
           locale: context.locale,
           debugShowCheckedModeBanner: false,
           routerConfig: AppRouter.router,
+          theme: themeData(),
         );
       },
     );
