@@ -5,7 +5,7 @@ import 'package:rick_and_morty_app/core/errors/failure.dart';
 
 import '../model/character_model.dart';
 
-abstract class HomeLayoutRepo
+abstract class HomeLayoutCharactersRepo
 {
-  Future<Either<Failure,List<CharacterModel>>>getAllCharacters();
+  Future<Either<Failure,List<Characters>>>getAllCharacters();
 }
