@@ -13,15 +13,18 @@ class HomeLayoutCharactersRepoImpl implements HomeLayoutCharactersRepo{
   ApiService apiService;
   HomeLayoutCharactersRepoImpl(this.apiService);
   @override
-  Future<Either<Failure,List<Characters>>>getAllCharacters() async
+  Future<Either<Failure,List<CharactersModel>>>getAllCharacters() async
   {
     try
     {
       var data = await apiService.get(endPoint: EndPoints.allCharacters);
 
-      List<Characters>allCharacters =[];
+      List<CharactersModel>allCharacters =[];
 
-      allCharacters.add(Characters.fromJson(data));
+      for(var item in data["results"])
+      {
+        allCharacters.add(CharactersModel.fromJson(item));
+      }
 
       return right(allCharacters);
 

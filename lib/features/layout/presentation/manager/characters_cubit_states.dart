@@ -16,7 +16,7 @@ class CharactersLoadingState extends CharactersCubitStates{}
 
 class CharactersSuccessState extends CharactersCubitStates
 {
-  final List<Characters>allCharacters;
+  final List<CharactersModel>allCharacters;
   const CharactersSuccessState(this.allCharacters);
 }
 

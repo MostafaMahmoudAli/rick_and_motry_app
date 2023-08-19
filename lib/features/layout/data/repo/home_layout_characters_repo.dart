@@ -7,5 +7,5 @@ import '../model/character_model.dart';
 
 abstract class HomeLayoutCharactersRepo
 {
-  Future<Either<Failure,List<Characters>>>getAllCharacters();
+  Future<Either<Failure,List<CharactersModel>>>getAllCharacters();
 }
