@@ -4,11 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rick_and_morty_app/translations/codegen_loader.g.dart';
 import 'config/app_router/app_router.dart';
 import 'config/themes/app_theme.dart';
+import 'core/utils/service_locator.dart';
 
 Future<void>main() async
 {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+   setUpServiceLocator();
   runApp(
     EasyLocalization(
         supportedLocales: const [
@@ -19,16 +21,15 @@ Future<void>main() async
         path: 'assets/translations',
         fallbackLocale: const Locale('en'),
         assetLoader: const CodegenLoader(),
-        child: const MyApp(),
+        child: MyApp(appRouter: AppRouter()),
     ),
   );
 
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
+   const MyApp({super.key, required this.appRouter});
+  final AppRouter appRouter;
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -37,13 +38,13 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (BuildContext context, Widget? _)
       {
-        return MaterialApp.router(
+        return MaterialApp(
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
           debugShowCheckedModeBanner: false,
-          routerConfig: AppRouter.router,
           theme: themeData(),
+           onGenerateRoute: appRouter.onGenerateRoute,
         );
       },
     );

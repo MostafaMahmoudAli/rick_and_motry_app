@@ -6,22 +6,22 @@ class ApiService{
   late final Dio dio;
   ApiService(this.dio)
   {
-    BaseOptions options = BaseOptions(
-      baseUrl: _baseUrl,
-      receiveDataWhenStatusError:true,
-      connectTimeout: const Duration(
-        seconds: 30,
-      ),
-      receiveTimeout:const Duration(
-        seconds: 30,
-      ),
-    );
-    dio =Dio(options);
+    // BaseOptions options = BaseOptions(
+    //   baseUrl: _baseUrl,
+    //   receiveDataWhenStatusError:true,
+    //   connectTimeout: const Duration(
+    //     seconds: 30,
+    //   ),
+    //   receiveTimeout:const Duration(
+    //     seconds: 30,
+    //   ),
+    // );
+    // dio =Dio(options);
   }
 
   Future<Map<String,dynamic>>get({required String? endPoint})async
   {
-    var response = await dio.get("$endPoint");
+    var response = await dio.get("$_baseUrl$endPoint");
     return response.data;
   }
 }

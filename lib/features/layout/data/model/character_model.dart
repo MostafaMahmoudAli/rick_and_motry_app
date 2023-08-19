@@ -1,25 +1,13 @@
 
 
-class Characters {
-  List<Character>? results;
-
-  Characters({
-    this.results,
-  });
-
-  factory Characters.fromJson(Map<String, dynamic> json) => Characters(
-    results: json["results"] == null ? [] : List<Character>.from(json["results"]!.map((x) => Character.fromJson(x))),
-  );
-
-}
-
-class Character {
+class CharactersModel
+{
   int? id;
   String? name;
-  Status? status;
-  Species? species;
+  String? status;
+  String? species;
   String? type;
-  Gender? gender;
+  String? gender;
   Location? origin;
   Location? location;
   String? image;
@@ -27,7 +15,7 @@ class Character {
   String? url;
   DateTime? created;
 
-  Character({
+  CharactersModel({
     this.id,
     this.name,
     this.status,
@@ -42,13 +30,13 @@ class Character {
     this.created,
   });
 
-  factory Character.fromJson(Map<String, dynamic> json) => Character(
+  factory CharactersModel.fromJson(Map<String, dynamic> json) => CharactersModel(
     id: json["id"],
     name: json["name"],
-    status: statusValues.map[json["status"]]!,
-    species: speciesValues.map[json["species"]]!,
+    status: json["status"],
+    species: json["species"],
     type: json["type"],
-    gender: genderValues.map[json["gender"]]!,
+    gender: json["gender"],
     origin: json["origin"] == null ? null : Location.fromJson(json["origin"]),
     location: json["location"] == null ? null : Location.fromJson(json["location"]),
     image: json["image"],
@@ -57,15 +45,21 @@ class Character {
     created: json["created"] == null ? null : DateTime.parse(json["created"]),
   );
 
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "name": name,
+    "status": status,
+    "species": species,
+    "type": type,
+    "gender": gender,
+    "origin": origin?.toJson(),
+    "location": location?.toJson(),
+    "image": image,
+    "episode": episode == null ? [] : List<dynamic>.from(episode!.map((x) => x)),
+    "url": url,
+    "created": created?.toIso8601String(),
+  };
 }
-
-enum Gender { MALE, FEMALE, UNKNOWN }
-
-final genderValues = EnumValues({
-  "Female": Gender.FEMALE,
-  "Male": Gender.MALE,
-  "unknown": Gender.UNKNOWN
-});
 
 class Location {
   String? name;
@@ -80,31 +74,10 @@ class Location {
     name: json["name"],
     url: json["url"],
   );
-}
 
-enum Species { HUMAN, ALIEN }
-
-final speciesValues = EnumValues({
-  "Alien": Species.ALIEN,
-  "Human": Species.HUMAN
-});
-
-enum Status { ALIVE, UNKNOWN, DEAD }
-
-final statusValues = EnumValues({
-  "Alive": Status.ALIVE,
-  "Dead": Status.DEAD,
-  "unknown": Status.UNKNOWN
-});
-
-class EnumValues<T> {
-  Map<String, T> map;
-  late Map<T, String> reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    reverseMap = map.map((k, v) => MapEntry(v, k));
-    return reverseMap;
-  }
+  Map<String, dynamic> toJson() =>
+      {
+    "name": name,
+    "url": url,
+  };
 }

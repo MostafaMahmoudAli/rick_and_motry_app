@@ -16,13 +16,23 @@ ThemeData themeData()
       ),
       displayMedium:TextStyle(
         color:AppColors.white,
-        fontSize:20.sp,
+        fontSize:18.sp,
         fontWeight:FontWeight.w700,
       ),
       displaySmall:TextStyle(
         color:AppColors.grey,
-        fontSize:15.sp,
-        fontWeight:FontWeight.w500,
+        fontSize:18.sp,
+        fontWeight:FontWeight.bold,
+      ),
+      titleMedium:TextStyle(
+        color:AppColors.white.withOpacity(0.75),
+        fontSize:18.sp,
+        fontWeight:FontWeight.bold,
+      ) ,
+      titleSmall:TextStyle(
+        color:AppColors.white,
+        fontSize:12.sp,
+        fontWeight:FontWeight.w700,
       ),
     ),
     scaffoldBackgroundColor: AppColors.grey,
